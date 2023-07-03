@@ -8,6 +8,7 @@ import {
   Link,
   Outlet,
   RouterProvider,
+  useLoaderData,
 } from "react-router-dom";
 import { Layout } from "../../layout/Layout";
 import { UpdateTodo } from "../../item/UpdateTodo";
@@ -34,19 +35,35 @@ import { UpdateTodo } from "../../item/UpdateTodo";
 //   )
 // );
 
+export async function loader() {
+  const response = await fetch("http://localhost:3000/data");
+  const todosData = await response.json();
+  console.log(todosData);
+  return { todosData };
+}
+
 const Home = () => {
-  const [todos, setTodos] = useState([]);
+  const { todosData } = useLoaderData();
+  const [todos, setTodos] = useState(todosData);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  useEffect(() => {
-    async function fetchTodos() {
-      const response = await fetch("http://localhost:3000/todos");
-      const todoArray = await response.json();
-      setTodos(todoArray);
-    }
-    fetchTodos();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchTodos() {
+  //     const response = await fetch("http://localhost:3000/todos");
+  //     const todoArray = await response.json();
+  //     setTodos(todoArray);
+  //   }
+  //   fetchTodos();
+  // }, []);
+
+  // const filteredtodos = todos.filter((job) => true);
+
+  // const jobCards = filteredtodos.map((job) => {
+  //   return <JobCard job={job} key={job.id} />;
+  // });
+
+  // return <>{jobCards}</>;
 
   const changeTodo = (id) => {
     const copy = [...todos];

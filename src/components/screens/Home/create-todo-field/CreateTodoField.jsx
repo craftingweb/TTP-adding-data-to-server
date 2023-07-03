@@ -21,7 +21,7 @@ export const CreateTodoField = ({
       description,
     };
     // console.log(JSON.stringify(preparedTodo));
-    const response = await fetch("http://localhost:3000/todos", {
+    const response = await fetch("http://localhost:3000/data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

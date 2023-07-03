@@ -4,19 +4,15 @@ import { Layout } from "./components/layout/Layout";
 import "./index.css";
 import Home from "./components/screens/Home/Home.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { loader as loaderData } from "./components/screens/Home/Home.jsx";
 import { UpdateTodo } from "./components/item/UpdateTodo";
 import ErrorPage from "./error-page";
-
-// export async function loader() {
-//   const response = await fetch("http://localhost:3000/jobs");
-//   const jobs = await response.json();
-//   return { jobs };
-// }
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    loader: loaderData,
     errorElement: <ErrorPage />,
   },
   {
