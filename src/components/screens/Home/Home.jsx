@@ -1,22 +1,39 @@
 import { useState, useEffect } from "react";
 import TodoItem from "../../item/TodoItem";
 import { CreateTodoField } from "./create-todo-field/CreateTodoField";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  Link,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
+import { Layout } from "../../layout/Layout";
+import { UpdateTodo } from "../../item/UpdateTodo";
 
-// creating an object
-// const data = [
-//   {
-//     _id: "1",
-//     title: "Front End",
-//     description: "HTML, CSS, Javascript, React",
-//     isCompleted: false,
-//   },
-//   {
-//     _id: "2",
-//     title: "Back End",
-//     description: "NodeJs, Express, SQL, MongoDB",
-//     isCompleted: false,
-//   },
-// ];
+// const Root = () => {
+//   return (
+//     <>
+//       <div>
+//         <Link to="/">Home</Link>
+//         <Link to="/todo">Todo</Link>
+//       </div>
+//       <div>
+//         <Outlet />
+//       </div>
+//     </>
+//   );
+// };
+// const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route path="/" element={<Root />}>
+//       <Route path="/update" element={<UpdateTodo />} />
+
+//     </Route>
+//   )
+// );
+
 const Home = () => {
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState("");
@@ -33,53 +50,30 @@ const Home = () => {
 
   const changeTodo = (id) => {
     const copy = [...todos];
-    const current = copy.find((t) => t._id === id);
+    const current = copy.find((t) => t.id === id);
     current.isCompleted = !current.isCompleted;
     setTodos(copy);
   };
   // remove Todo
   const removeTodo = (id) => {
-    setTodos(todos.filter((t) => t._id !== id));
+    setTodos(todos.filter((t) => t.id !== id));
   };
 
-  // add ToDo, rece[ive title
+  // add ToDo
   const addTodo = (newItem) => {
-    // const newTodo = {
-    //   // ...todos,
-    //   _id: new Date(),
-    //   title, // recieving title
-    //   isCompleted: false,
-    //   description,
-    // };
-    // const response = await fetch("http://localhost:3000/data", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(newTodo),
-    // });
-    // const toDo = await response.json();
-
-    // setTodos(toDo);
-
     setTodos([newItem, ...todos]);
-    // will add first new todo and then rest of todos.
-    // {
-    //   _id: new Date(),
-    //   title, // recieving title
-    //   isCompleted: false,
-    //   description,
-    // },
   };
 
   return (
     <div className="text-white w-4/5 mx-auto">
-      <h1 className="text-2xl font-bold text-center mb-8">Todo for junior</h1>
-      {/* map though todos not data */}
+      {/* <RouterProvider router={router} /> */}
+      <h1 className="text-2xl font-bold text-center mb-8">
+        Todo For Junior Developer
+      </h1>
 
       {todos.map((todo) => (
         <TodoItem
-          key={todo._id}
+          key={todo.id}
           todo={todo}
           changeTodo={changeTodo}
           removeTodo={removeTodo}
