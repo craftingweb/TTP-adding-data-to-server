@@ -1,4 +1,19 @@
 import React, { useState } from "react";
+import { redirect } from "react-router-dom";
+
+export async function action({ request, params }) {
+  let formData = await request.formData();
+  let jobData = Object.fromEntries(formData);
+
+  const response = await fetch("http://localhost:3000/jobs", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jobData),
+  });
+  return redirect("/");
+}
 
 export const CreateTodoField = ({
   addTodo,
@@ -7,20 +22,15 @@ export const CreateTodoField = ({
   description,
   setDescription,
 }) => {
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
   const handleAddJobFormSubmit = async (e) => {
     e.preventDefault();
-    // new todo should be added to the DOM
+
     const preparedTodo = {
-      // ...todos,
-      // id: new Date(),
-      // we do not pass id, it adds automatically by Json later
-      title, // recieving title
+      title,
       isCompleted: false,
       description,
     };
-    // console.log(JSON.stringify(preparedTodo));
+
     const response = await fetch("http://localhost:3000/data", {
       method: "POST",
       headers: {
@@ -28,12 +38,10 @@ export const CreateTodoField = ({
       },
       body: JSON.stringify(preparedTodo),
     });
-    console.log(await response);
+
     const newTodo = await response.json();
-    // console.log(await newTodo);
-    // parent component should be notified of created job
+
     addTodo(newTodo);
-    // addTodo(title, description);
   };
   return (
     <form

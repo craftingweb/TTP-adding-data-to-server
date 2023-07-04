@@ -5,19 +5,28 @@ import "./index.css";
 import Home from "./components/screens/Home/Home.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { loader as loaderData } from "./components/screens/Home/Home.jsx";
-import { UpdateTodo } from "./components/item/UpdateTodo";
+
 import ErrorPage from "./error-page";
+import { Edit } from "./components/item/Edit";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     loader: loaderData,
+    // async action({ params, request }) {
+    // params is dynamic parameter inside url
+    // request is outgoing http request
+    // const formData = await request.formData();
+    // formData() return promise
+    // in order to read promise we have to convert into object by Object.fromEntries(formData)
+    // Object.fromEntries(formData);
+    // },
     errorElement: <ErrorPage />,
   },
   {
-    path: "/update",
-    element: <UpdateTodo />,
+    path: "/edit/:id",
+    element: <Edit />,
   },
 ]);
 
