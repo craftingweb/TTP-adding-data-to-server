@@ -31,19 +31,19 @@ const Edit = () => {
   return (
     <Form
       method="PATCH"
-      className="flex flex-col items-center justify-between mb-4 rounded-2xl border-gray-800 border-2 px-5 py-5 mt-10 w-full"
+      className="flex flex-col items-center justify-between mb-4 rounded-2xl border-gray-800 border-2 px-5 py-5 mt-10 w-full h-[25rem]"
     >
       <input
         type="text"
         defaultValue={title}
-        className=" w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5"
+        className=" w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5 text-yellow-200"
         placeholder="Task Title"
         name="title"
       />
       <input
         type="text"
         defaultValue={description}
-        className="w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5 my-5"
+        className="w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5 my-5 text-yellow-200"
         placeholder="Task Description"
         name="description"
       />
@@ -58,29 +58,28 @@ const Edit = () => {
 };
 
 export default Edit;
-// export const Edit = () => {
-//   const { id } = useParams();
-//   const [todo, setTodo] = useState("");
+/*
+we have to give descriptive names, on what we doing it and what is doing it
 
-//   useEffect(() => {
-//     async function fetchTodos() {
-//       const response = await fetch(`http://localhost:3000/data/${id}`);
-//       const todoId = await response.json();
-//       setTodo(todoId);
-//     }
-//     fetchTodos();
-//   }, [id]);
+we use loader and action in one component just before component definition and then we have to routes component and import them there as aliases before it will be different loaders and actions
 
-//   return (
-//     <div className="bg-gray-900 bg-auto h-screen py-10 text-orange-600">
-//       <div className="flex flex-col items-center justify-between mb-4 rounded-2xl border-gray-800 border-2 px-5 py-5 mt-10 w-full">
-//         <h1 className="font-bold text-blue-300 w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5">
-//           {todo.title}
-//         </h1>
-//         <p className="w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5 my-5 italic text-green-300 ">
-//           {todo.description}
-//         </p>
-//       </div>
-//     </div>
-//   );
-// };
+params is what will be after :  /:id
+
+when word fetch is taking data from server 
+
+return Form with capital letter 
+
+with loader we fetching / getting all objects/or specific object and at the end of loader we have to return this object and then in component to use useLoaderData() and assign it to that object that we return in loader in order to uset it, but also have to destructure this object it in a variables in order to use them in our application
+
+in action at the end if we finish updating then redirect to home page but if we use in home page action we just return null
+
+we also have to use defaultValue 
+
+Lighthouse statistics use for resume
+
+Cmnd Shift L -- to find all instances of selected word
+
+Search icon for word and it will show all instrances for all components and we can replace it there. 
+
+we have to import useLoaderData, Form, redirect in that component
+*/
