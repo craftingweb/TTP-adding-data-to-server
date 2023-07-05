@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { redirect } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 
 export async function action({ request, params }) {
-  let formData = await request.formData();
-  let jobData = Object.fromEntries(formData);
+  // creating form data object
+  const formData = await request.formData();
+  // Vanila JS object
+  const taskData = Object.fromEntries(formData);
 
-  const response = await fetch("http://localhost:3000/jobs", {
+  const preparedTodo = {
+    ...taskData,
+    isCompleted: false,
+  };
+
+  const response = await fetch("http://localhost:3000/data", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(jobData),
+    body: JSON.stringify(preparedTodo),
   });
-  return redirect("/");
+
+  return null;
 }
 
 export const CreateTodoField = ({
@@ -22,30 +30,31 @@ export const CreateTodoField = ({
   description,
   setDescription,
 }) => {
-  const handleAddJobFormSubmit = async (e) => {
-    e.preventDefault();
+  // const handleAddJobFormSubmit = async (e) => {
+  //   e.preventDefault();
 
-    const preparedTodo = {
-      title,
-      isCompleted: false,
-      description,
-    };
+  //   const preparedTodo = {
+  //     title,
+  //     isCompleted: false,
+  //     description,
+  //   };
 
-    const response = await fetch("http://localhost:3000/data", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(preparedTodo),
-    });
+  //   const response = await fetch("http://localhost:3000/data", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(preparedTodo),
+  //   });
 
-    const newTodo = await response.json();
+  //   const newTodo = await response.json();
 
-    addTodo(newTodo);
-  };
+  //   addTodo(newTodo);
+  // };
   return (
-    <form
-      onSubmit={handleAddJobFormSubmit}
+    <Form
+      method="POST"
+      // onSubmit={handleAddJobFormSubmit}
       className="flex flex-col items-center justify-between mb-4 rounded-2xl border-gray-800 border-2 px-5 py-5 mt-10 w-full"
     >
       <input
@@ -54,7 +63,7 @@ export const CreateTodoField = ({
         value={title}
         className=" w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5"
         placeholder="Task Title"
-        name="titleName"
+        name="title"
       />
       <input
         type="text"
@@ -62,7 +71,7 @@ export const CreateTodoField = ({
         value={description}
         className="w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5 my-5"
         placeholder="Task Description"
-        name="descriptionTodo"
+        name="description"
       />
       <button
         type="submit"
@@ -70,6 +79,6 @@ export const CreateTodoField = ({
       >
         +
       </button>
-    </form>
+    </Form>
   );
 };

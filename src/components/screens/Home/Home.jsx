@@ -20,7 +20,7 @@ export async function loader() {
 
 const Home = () => {
   const { todosData } = useLoaderData();
-  const [todos, setTodos] = useState(todosData);
+  // const [todos, setTodos] = useState(todosData);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -58,7 +58,7 @@ const Home = () => {
         Todo For Junior Developer
       </h1>
 
-      {todos.map((todo) => (
+      {todosData.map((todo) => (
         <TodoItem
           key={todo.id}
           todo={todo}

@@ -16,7 +16,7 @@ export const Edit = () => {
   return (
     <div className="bg-gray-900 bg-auto h-screen py-10 text-orange-600">
       <div className="flex flex-col items-center justify-between mb-4 rounded-2xl border-gray-800 border-2 px-5 py-5 mt-10 w-full">
-        <h1 className="font-bold text-xl text-blue-300 w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5">
+        <h1 className="font-bold text-blue-300 w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5">
           {todo.title}
         </h1>
         <p className="w-full text-xl  outline-none rounded-2xl bg-gray-800 p-5 my-5 italic text-green-300 ">
