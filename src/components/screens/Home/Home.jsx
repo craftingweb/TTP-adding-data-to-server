@@ -24,17 +24,6 @@ const Home = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  // useEffect(() => {
-  //   async function fetchTodos() {
-  //     const response = await fetch("http://localhost:3000/todos");
-  //     const todoArray = await response.json();
-  //     setTodos(todoArray);
-  //   }
-  //   fetchTodos();
-  // }, []);
-
-  // const filteredtodos = todos.filter((job) => true);
-
   const changeTodo = (id) => {
     const copy = [...todos];
     const current = copy.find((t) => t.id === id);

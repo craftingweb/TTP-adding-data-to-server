@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, redirect } from "react-router-dom";
 
 export async function action({ request, params }) {
-  // creating form data object
+  // creating form data object instead of regular form
   const formData = await request.formData();
   // Vanila JS object
   const taskData = Object.fromEntries(formData);

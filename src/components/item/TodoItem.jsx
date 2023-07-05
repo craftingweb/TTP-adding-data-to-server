@@ -1,4 +1,3 @@
-// TodoItem will recieve todo's title in Home componentnt
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import Check from "./Check";
@@ -7,7 +6,6 @@ import { Link } from "react-router-dom";
 const TodoItem = ({ todo, changeTodo, removeTodo }) => {
   return (
     <div className="flex items-center justify-between mb-4 rounded-2xl bg-gray-800 p-5 w-full">
-      {/* here flex make icon and title on same ine, then with items-center to center them; w-full will expend it in full width for button*/}
       <button className="flex items-center" onClick={() => changeTodo(todo.id)}>
         <Check isCompleted={todo.isCompleted} />
         <span className={todo.isCompleted ? "line-through" : ""}>
@@ -32,7 +30,6 @@ const TodoItem = ({ todo, changeTodo, removeTodo }) => {
           />
         </button>
       </div>
-      {/* hover effect syntax hover: property */}
     </div>
   );
 };

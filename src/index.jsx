@@ -7,7 +7,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { loader as loaderData } from "./components/screens/Home/Home.jsx";
 import { action as createTodoAction } from "./components/screens/Home/create-todo-field/CreateTodoField";
 import ErrorPage from "./error-page";
-import { Edit } from "./components/item/Edit";
+import Edit, {
+  loader as updateTodoLoader,
+  action as updateTodoAction,
+} from "./components/item/Edit";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,8 @@ const router = createBrowserRouter([
   {
     path: "/edit/:id",
     element: <Edit />,
+    loader: updateTodoLoader,
+    action: updateTodoAction,
   },
 ]);
 
@@ -35,15 +40,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Layout>
       <RouterProvider router={router} />
-      {/* <Home /> */}
     </Layout>
   </React.StrictMode>
 );
-
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <React.StrictMode>
-//     <Layout>
-//       <Home />
-//     </Layout>
-//   </React.StrictMode>
-// );

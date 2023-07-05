@@ -11,12 +11,6 @@
       "title": "Back End",
       "description": "NodeJs, Express, SQL, MongoDB",
       "isCompleted": false
-    },
-    {
-      "title": "df",
-      "description": "df",
-      "isCompleted": false,
-      "id": 3
     }
   ]
 }
