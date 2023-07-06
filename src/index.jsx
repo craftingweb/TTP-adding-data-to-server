@@ -11,6 +11,9 @@ import Edit, {
   loader as updateTodoLoader,
   action as updateTodoAction,
 } from "./components/item/Edit";
+import { Delete } from "./components/item/Delete";
+// import { loader as deleteTodoLoader } from "./components/item/Delete";
+import { action as deleteTodoAction } from "./components/item/Delete";
 
 const router = createBrowserRouter([
   {
@@ -18,14 +21,6 @@ const router = createBrowserRouter([
     element: <Home />,
     loader: loaderData,
     action: createTodoAction,
-    // async action({ params, request }) {
-    // params is dynamic parameter inside url
-    // request is outgoing http request
-    // const formData = await request.formData();
-    // formData() return promise
-    // in order to read promise we have to convert into object by Object.fromEntries(formData)
-    // Object.fromEntries(formData);
-    // },
     errorElement: <ErrorPage />,
   },
   {
@@ -33,6 +28,12 @@ const router = createBrowserRouter([
     element: <Edit />,
     loader: updateTodoLoader,
     action: updateTodoAction,
+  },
+  {
+    path: "/delete/:id",
+    // element: <Delete />,
+    // loader: deleteTodoLoader,
+    action: deleteTodoAction,
   },
 ]);
 

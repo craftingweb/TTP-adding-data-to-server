@@ -19,16 +19,21 @@ const TodoItem = ({ todo, changeTodo, removeTodo }) => {
         <Link to={`/edit/${todo.id}`}>
           <AiOutlineEdit
             size={22}
-            className="text-gray-600 hover:text-blue-700 transition-colors ease-in-out duration-300"
+            className="text-gray-600 hover:text-yellow-200 transition-colors ease-in-out duration-300"
           />
         </Link>
-
-        <button onClick={() => removeTodo(todo.id)}>
+        <Link to={`/delete/${todo.id}`}>
           <BsTrash
             size={22}
             className="text-gray-600 hover:text-red-700 transition-colors ease-in-out duration-300"
           />
-        </button>
+        </Link>
+        {/* <button onClick={() => removeTodo(todo.id)}>
+          <BsTrash
+            size={22}
+            className="text-gray-600 hover:text-red-700 transition-colors ease-in-out duration-300"
+          />
+        </button> */}
       </div>
     </div>
   );

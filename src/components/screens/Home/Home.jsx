@@ -42,7 +42,6 @@ const Home = () => {
 
   return (
     <div className="text-white w-4/5 mx-auto">
-      {/* <RouterProvider router={router} /> */}
       <h1 className="text-2xl font-bold text-center mb-8">
         Todo For Junior Developer
       </h1>
